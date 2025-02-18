@@ -1,0 +1,13 @@
+package com.banking.apigateway.config;
+@Configuration
+public class GatewayConfig {
+	@Bean
+	public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
+		return builder.routes()
+			.route("account-service", r -> r.path("/get")
+				.uri("http://localhost:8081/account/get"))
+			.route("transaction-service", r -> r.host("/get")
+				.uri("http://localhost:8082/transaction/get"))
+			.build();
+	}
+}
